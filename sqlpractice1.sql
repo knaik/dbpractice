@@ -29,3 +29,17 @@ LEFT JOIN Orders
 ON Orders.customer_id = Customers.customer_id
 WHERE item IS NOT NULL
 ;
+
+-- Online SQL Editor to Run SQL Online.
+-- Use the editor to create new tables, insert data and all other SQL operations.
+
+SELECT first_name as Name, last_initial as Last, Count(first_name)
+FROM (
+SELECT first_name, SUBSTRING(last_name, 1, 1) AS last_initial, item
+FROM Customers
+LEFT JOIN Orders
+ON Orders.customer_id = Customers.customer_id
+WHERE item IS NOT NULL
+ )
+ GROUP BY last_initial
+;
